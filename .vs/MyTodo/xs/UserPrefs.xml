@@ -1,0 +1,49 @@
+﻿<Properties StartupConfiguration="{28B7F03A-9FD9-40D1-BA49-C80ADCE7A458}|http">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.MyTodo PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MyTodo/Repositories/UserRepository.cs">
+    <Files>
+      <File FileName="MyTodo/Controllers/TodoController.cs" Line="29" Column="1" />
+      <File FileName="MyTodo/Program.cs" Line="19" Column="7" />
+      <File FileName="MyTodo/Repositories/TodoRepository.cs" Line="16" Column="35" />
+      <File FileName="MyTodo/Repositories/BaseInterface.cs" Line="12" Column="1" />
+      <File FileName="MyTodo/appsettings.json" Line="12" Column="4" />
+      <File FileName="MyTodo/Controllers/UserController.cs" Line="13" Column="51" />
+      <File FileName="MyTodo/Models/Todo.cs" Line="1" Column="1" />
+      <File FileName="MyTodo/Repositories/UserRepository.cs" Line="17" Column="1" />
+      <File FileName="MyTodo/Models/AppContext.cs" Line="8" Column="45" />
+      <File FileName="MyTodo/appsettings.Development.json" Line="12" Column="4" />
+      <File FileName="MyTodo/Models/User.cs" Line="8" Column="22" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MyTodo" expanded="True">
+            <Node name="MyTodo" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="UserRepository.cs" selected="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value> builder.Configuration["JWTSettings:Audience"]</Value>
+          <Value>builder.Configuration["JWTSettings:true"]</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/colincampbell/Projects/MyTodo/MyTodo/Controllers/TodoController.cs" relfile="MyTodo/Controllers/TodoController.cs" line="29" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
