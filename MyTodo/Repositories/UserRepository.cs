@@ -28,6 +28,11 @@ namespace MyTodo.Repositories
             throw new NotImplementedException();
         }
 
+        public User Find()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<User> FindAll()
         {
             throw new NotImplementedException();

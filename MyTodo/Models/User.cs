@@ -31,6 +31,10 @@ namespace MyTodo.Models
 			this.Id = _user.Id;
 			this.username = _user.username;
 		}
-	}
+
+        public UserReturn()
+        {
+        }
+    }
 }
 

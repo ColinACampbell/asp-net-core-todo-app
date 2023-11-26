@@ -34,6 +34,12 @@ namespace MyTodo.Controllers
             return userRtn;
         }
 
+        [HttpPost()]
+        public UserReturn LoginUser([FromBody] User user) {
+            //user = _userRepository.
+            return new UserReturn();
+        }
+
         // To generate token
         private string GenerateToken(User user)
         {

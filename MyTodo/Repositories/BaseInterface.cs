@@ -7,6 +7,7 @@ namespace MyTodo.Repositories
 		T Update(T value);
 		T Delete(T value);
 		IEnumerable<T> FindAll();
+		T Find();
 	}
 }
 

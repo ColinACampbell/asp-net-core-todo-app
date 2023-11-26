@@ -25,6 +25,11 @@ namespace MyTodo.Repositories
             throw new NotImplementedException();
         }
 
+        public Todo Find()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Todo> FindAll()
         {
             return _todoConext.Todos;
