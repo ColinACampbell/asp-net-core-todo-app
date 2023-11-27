@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 namespace MyTodo.Repositories
 {
 	public interface IBaseRepository<T> where T: class
@@ -7,7 +8,7 @@ namespace MyTodo.Repositories
 		T Update(T value);
 		T Delete(T value);
 		IEnumerable<T> FindAll();
-		T Find();
+		Task<T?> Find(Expression<Func<T, bool>> pred);
 	}
 }
 

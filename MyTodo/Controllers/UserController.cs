@@ -10,7 +10,7 @@ using MyTodo.Repositories;
 
 namespace MyTodo.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class UserController : Controller
     {
         IBaseRepository<User> _userRepository;
@@ -23,7 +23,7 @@ namespace MyTodo.Controllers
         }
       
         [HttpPost()]
-        public UserReturn CreateUserAdmin([FromBody] User user)
+        public UserReturn CreateAdmin([FromBody] User user)
         {
             var newUser = _userRepository.Create(user);
             newUser.password = null;
@@ -35,9 +35,16 @@ namespace MyTodo.Controllers
         }
 
         [HttpPost()]
-        public UserReturn LoginUser([FromBody] User user) {
-            //user = _userRepository.
-            return new UserReturn();
+        public async Task<ActionResult> Auth([FromBody] User user) {
+            var userRtn = await _userRepository.Find(x => x.email == user.email);
+
+            if (userRtn == null) {
+                return NotFound();
+            } else {
+                // TODO  Create custom Interface for UserRepistory with this method
+                const passvalid = _userRepository.ComparePasswords();
+                return Ok(userRtn);
+            }
         }
 
         // To generate token

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using MyTodo.Models;
 
 namespace MyTodo.Repositories
@@ -25,7 +26,7 @@ namespace MyTodo.Repositories
             throw new NotImplementedException();
         }
 
-        public Todo Find()
+        public Task<Todo?> Find(Expression<Func<Todo, bool>> pred)
         {
             throw new NotImplementedException();
         }

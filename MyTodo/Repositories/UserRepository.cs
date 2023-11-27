@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq.Expressions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using MyTodo.Models;
 
 namespace MyTodo.Repositories
@@ -28,9 +30,16 @@ namespace MyTodo.Repositories
             throw new NotImplementedException();
         }
 
-        public User Find()
+        public Task<User?> Find(int id)
         {
-            throw new NotImplementedException();
+            var user = _appContext.Users.FirstOrDefaultAsync( user => user.Id == id);
+            return user;
+        }
+
+        public Task<User?> Find(Expression<Func<User, bool>> pred)
+        {
+            var user = _appContext.Users.FirstOrDefaultAsync(pred);
+            return user;
         }
 
         public IEnumerable<User> FindAll()
@@ -41,6 +50,14 @@ namespace MyTodo.Repositories
         public User Update(User value)
         {
             throw new NotImplementedException();
+        }
+
+        public bool ComparePasswords(User user, string unhashed, string hashed ){
+            var result = _passwordHasher.VerifyHashedPassword(user,hashed,unhashed);
+            if (result.Equals(PasswordVerificationResult.Success))
+                return true;
+            else 
+                return false;
         }
     }
 }
