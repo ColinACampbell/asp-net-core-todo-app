@@ -52,13 +52,7 @@ namespace MyTodo.Repositories
             throw new NotImplementedException();
         }
 
-        public bool ComparePasswords(User user, string unhashed, string hashed ){
-            var result = _passwordHasher.VerifyHashedPassword(user,hashed,unhashed);
-            if (result.Equals(PasswordVerificationResult.Success))
-                return true;
-            else 
-                return false;
-        }
+        
     }
 }
 

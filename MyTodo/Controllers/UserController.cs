@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using MyTodo.Models;
@@ -15,11 +16,13 @@ namespace MyTodo.Controllers
     {
         IBaseRepository<User> _userRepository;
         private readonly IConfiguration _config;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        public UserController(IBaseRepository<User> userRepository, IConfiguration config)
+        public UserController(IBaseRepository<User> userRepository, IConfiguration config, IPasswordHasher<User> passwordHasher)
         {
             _userRepository = userRepository;
             _config = config;
+            _passwordHasher = passwordHasher;
         }
       
         [HttpPost()]
@@ -42,8 +45,16 @@ namespace MyTodo.Controllers
                 return NotFound();
             } else {
                 // TODO  Create custom Interface for UserRepistory with this method
-                const passvalid = _userRepository.ComparePasswords();
-                return Ok(userRtn);
+                var passvalid = ComparePasswords(userRtn,user.password,userRtn.password);
+                if (passvalid)
+                {
+                    UserReturn userReturn = new UserReturn(userRtn);
+                    userReturn.token = GenerateToken(userRtn);
+                    return Ok(userReturn);   
+                } else {
+                    return Forbid();
+                }
+                //return Ok(userRtn);
             }
         }
 
@@ -65,6 +76,14 @@ namespace MyTodo.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
 
+        }
+
+        private bool ComparePasswords(User user, string unhashed, string hashed ){
+            var result = _passwordHasher.VerifyHashedPassword(user,hashed,unhashed);
+            if (result.Equals(PasswordVerificationResult.Success))
+                return true;
+            else 
+                return false;
         }
     }
 }
