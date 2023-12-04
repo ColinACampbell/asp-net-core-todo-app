@@ -24,7 +24,7 @@ namespace MyTodo.Controllers
             _config = config;
             _passwordHasher = passwordHasher;
         }
-      
+
         [HttpPost()]
         public UserReturn CreateAdmin([FromBody] User user)
         {
@@ -33,25 +33,31 @@ namespace MyTodo.Controllers
 
             var userRtn = new UserReturn(newUser);
             userRtn.token = GenerateToken(userRtn);
-            
+
             return userRtn;
         }
 
         [HttpPost()]
-        public async Task<ActionResult> Auth([FromBody] User user) {
+        public async Task<ActionResult> Auth([FromBody] User user)
+        {
             var userRtn = await _userRepository.Find(x => x.email == user.email);
 
-            if (userRtn == null) {
+            if (userRtn == null)
+            {
                 return NotFound();
-            } else {
+            }
+            else
+            {
                 // TODO  Create custom Interface for UserRepistory with this method
-                var passvalid = ComparePasswords(userRtn,user.password,userRtn.password);
+                var passvalid = ComparePasswords(userRtn, user.password, userRtn.password);
                 if (passvalid)
                 {
                     UserReturn userReturn = new UserReturn(userRtn);
                     userReturn.token = GenerateToken(userRtn);
-                    return Ok(userReturn);   
-                } else {
+                    return Ok(userReturn);
+                }
+                else
+                {
                     return Forbid();
                 }
                 //return Ok(userRtn);
@@ -65,7 +71,9 @@ namespace MyTodo.Controllers
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Iss, _config["JWTSettings:Issuer"]),
+                new Claim(JwtRegisteredClaimNames.Aud, _config["JWTSettings:Audience"]),
             };
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
@@ -78,11 +86,12 @@ namespace MyTodo.Controllers
 
         }
 
-        private bool ComparePasswords(User user, string unhashed, string hashed ){
-            var result = _passwordHasher.VerifyHashedPassword(user,hashed,unhashed);
+        private bool ComparePasswords(User user, string unhashed, string hashed)
+        {
+            var result = _passwordHasher.VerifyHashedPassword(user, hashed, unhashed);
             if (result.Equals(PasswordVerificationResult.Success))
                 return true;
-            else 
+            else
                 return false;
         }
     }

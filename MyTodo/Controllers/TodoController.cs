@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +14,7 @@ using MyTodo.Repositories;
 namespace MyTodo.Controllers
 {
     [ApiController]
-    //[Authorize]
+    [Authorize]
     [Route("/api/v1/todo")]
     public class TodoController : ControllerBase
     {
@@ -26,6 +28,8 @@ namespace MyTodo.Controllers
         [HttpGet]
         public IEnumerable<Todo> GetTODOs()
         {
+            var currentUser = HttpContext.User;
+            currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             return todoRepository.FindAll();
         }
 
