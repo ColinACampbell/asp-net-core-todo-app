@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using MyTodo.Models;
 using MyTodo.Repositories;
+using MyTodo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,8 @@ builder.Services.AddScoped<MyTodo.Models.AppContext>();
 builder.Services.AddScoped<IBaseRepository<Todo>, TodoRepository>();
 builder.Services.AddScoped<IBaseRepository<User>, UserRepository>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 var app = builder.Build();
 

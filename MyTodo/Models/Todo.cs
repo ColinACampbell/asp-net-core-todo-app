@@ -19,6 +19,11 @@ namespace MyTodo.Models
 		[Column("todo_date")]
 		public string date { get; set; }
 
+		public User? User {get; set; }
+
+		[Column("user_id")]
+		public int userId {get; set;}
+
         public Todo()
 		{
 

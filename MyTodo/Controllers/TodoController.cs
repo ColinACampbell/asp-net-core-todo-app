@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyTodo.Models;
 using MyTodo.Repositories;
+using MyTodo.Services;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,25 +20,32 @@ namespace MyTodo.Controllers
     public class TodoController : ControllerBase
     {
         IBaseRepository<Todo> todoRepository;
+        IUserService _userService;
 
-        public TodoController(IBaseRepository<Todo> repo)
+        public TodoController(IBaseRepository<Todo> repo, IUserService userService)
         {
             todoRepository = repo;
+            _userService = userService;
         }
 
         [HttpGet]
-        public IEnumerable<Todo> GetTODOs()
+        public async Task<IEnumerable<Todo>> GetTODOs()
         {
-            var currentUser = HttpContext.User;
-            currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            // TODO Use user id
             return todoRepository.FindAll();
         }
 
         [HttpPost]
-        public Todo CreateTODO([FromBody] Todo newTodo){
+        public async Task<Todo> CreateTODO([FromBody] Todo newTodo){
             Console.WriteLine(newTodo.title);
             Todo todo = new Todo();
+
+            // Create special class for accepting the request
+            var currentUser = HttpContext.User;
+            var user = await _userService.GetUser(currentUser);
+
             todo.title = newTodo.title;
+            todo.User = user!;
             todo.date = newTodo.date;
             todo.description = newTodo.description;
             return todoRepository.Create(todo);

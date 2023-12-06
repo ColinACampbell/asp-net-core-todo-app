@@ -14,6 +14,7 @@ namespace MyTodo.Models
 		public string email { get; set; }
 		public string password { get; set; }
 		public string username { get; set; }
+		public ICollection<Todo> Todos {get;}
 
 		public User()
 		{
