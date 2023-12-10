@@ -36,7 +36,7 @@ namespace MyTodo.Controllers
         }
 
         [HttpPost]
-        public async Task<Todo> CreateTODO([FromBody] Todo newTodo){
+        public async Task<Todo> CreateTODO([FromBody] MyTodo.Models.Http.CreateTodo newTodo){
             Console.WriteLine(newTodo.title);
             Todo todo = new Todo();
 
@@ -46,6 +46,7 @@ namespace MyTodo.Controllers
 
             todo.title = newTodo.title;
             todo.User = user!;
+            todo.Id = user!.Id;
             todo.date = newTodo.date;
             todo.description = newTodo.description;
             return todoRepository.Create(todo);

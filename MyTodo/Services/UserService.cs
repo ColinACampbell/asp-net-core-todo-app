@@ -20,8 +20,8 @@ namespace MyTodo.Services
 
         public Task<User?> GetUser(ClaimsPrincipal user)
         {
-            var id_string = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)!.ToString();
-            var id = Int32.Parse(id_string);
+            var id_string = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
+            var id = Int64.Parse(id_string);
             return _userRepo.Find(e => e.Id == id);
         }
     }
