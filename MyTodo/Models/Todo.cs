@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 
 
@@ -19,6 +20,7 @@ namespace MyTodo.Models
 		[Column("todo_date")]
 		public string date { get; set; }
 
+		[JsonIgnore]
 		public User? User {get; set; }
 
 		[Column("user_id")]

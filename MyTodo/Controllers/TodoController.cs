@@ -46,7 +46,7 @@ namespace MyTodo.Controllers
 
             todo.title = newTodo.title;
             todo.User = user!;
-            todo.Id = user!.Id;
+            todo.userId = user!.Id;
             todo.date = newTodo.date;
             todo.description = newTodo.description;
             return todoRepository.Create(todo);
