@@ -32,7 +32,9 @@ namespace MyTodo.Controllers
         public async Task<IEnumerable<Todo>> GetTODOs()
         {
             // TODO Use user id
-            return todoRepository.FindAll();
+            var currentUser = HttpContext.User;
+            var user = await _userService.GetUser(currentUser);
+            return await todoRepository.FindAll(t=> t.userId == user.Id);
         }
 
         [HttpPost]

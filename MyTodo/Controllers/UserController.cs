@@ -48,7 +48,6 @@ namespace MyTodo.Controllers
             }
             else
             {
-                // TODO  Create custom Interface for UserRepistory with this method
                 var passvalid = ComparePasswords(userRtn, user.password, userRtn.password);
                 if (passvalid)
                 {

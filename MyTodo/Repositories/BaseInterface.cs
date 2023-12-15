@@ -9,6 +9,7 @@ namespace MyTodo.Repositories
 		T Delete(T value);
 		IEnumerable<T> FindAll();
 		Task<T?> Find(Expression<Func<T, bool>> pred);
+		Task<IEnumerable<T>> FindAll(Expression<Func<T, bool>> pred);
 	}
 }
 

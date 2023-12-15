@@ -1,48 +1,45 @@
 ﻿<Properties StartupConfiguration="{28B7F03A-9FD9-40D1-BA49-C80ADCE7A458}|http">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.MyTodo PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/colincampbell/Projects/MyTodo/MyTodo/Controllers/TodoController.cs" relfile="MyTodo/Controllers/TodoController.cs" line="29" column="1" />
+      <Breakpoint file="/Users/colincampbell/Projects/MyTodo/MyTodo/Repositories/TodoRepository.cs" relfile="MyTodo/Repositories/TodoRepository.cs" line="20" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.MyTodo PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MyTodo/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MyTodo/Controllers/TodoController.cs">
     <Files>
-      <File FileName="MyTodo/Controllers/TodoController.cs" Line="39" Column="39" />
+      <File FileName="MyTodo/Controllers/TodoController.cs" Line="50" Column="15" />
       <File FileName="MyTodo/Program.cs" Line="33" Column="1" />
-      <File FileName="MyTodo/Repositories/TodoRepository.cs" Line="16" Column="35" />
-      <File FileName="MyTodo/Repositories/BaseInterface.cs" Line="11" Column="2" />
-      <File FileName="MyTodo/appsettings.json" Line="12" Column="1" />
-      <File FileName="MyTodo/Controllers/UserController.cs" Line="53" Column="1" />
-      <File FileName="MyTodo/Models/Todo.cs" Line="11" Column="21" />
-      <File FileName="MyTodo/Repositories/UserRepository.cs" Line="10" Column="9" />
-      <File FileName="MyTodo/Models/AppContext.cs" Line="9" Column="1" />
-      <File FileName="MyTodo/appsettings.Development.json" Line="12" Column="1" />
-      <File FileName="MyTodo/Models/User.cs" Line="32" Column="35" />
+      <File FileName="MyTodo/Repositories/TodoRepository.cs" Line="20" Column="1" />
+      <File FileName="MyTodo/Repositories/BaseInterface.cs" Line="16" Column="1" />
+      <File FileName="MyTodo/appsettings.json" />
+      <File FileName="MyTodo/Controllers/UserController.cs" Line="51" Column="1" />
+      <File FileName="MyTodo/Models/Todo.cs" />
+      <File FileName="MyTodo/Repositories/UserRepository.cs" Line="50" Column="32" />
+      <File FileName="MyTodo/Models/AppContext.cs" />
+      <File FileName="MyTodo/appsettings.Development.json" />
+      <File FileName="MyTodo/Models/User.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="MyTodo" expanded="True">
-            <Node name="MyTodo" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True" />
+          <Node name="MyTodo">
+            <Node name="MyTodo">
+              <Node name="Controllers">
+                <Node name="TodoController.cs" selected="True" />
+              </Node>
               <Node name="Properties" expanded="True" />
-              <Node name="Repositories" expanded="True" />
-              <Node name="appsettings.json" expanded="True" />
-              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State>
-          <Value> builder.Configuration["JWTSettings:Audience"]</Value>
-          <Value>builder.Configuration["JWTSettings:true"]</Value>
+          <Value>value</Value>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

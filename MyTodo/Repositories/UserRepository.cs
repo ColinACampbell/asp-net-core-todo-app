@@ -47,6 +47,11 @@ namespace MyTodo.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<User>> FindAll(Expression<Func<User, bool>> pred)
+        {
+            throw new NotImplementedException();
+        }
+
         public User Update(User value)
         {
             throw new NotImplementedException();

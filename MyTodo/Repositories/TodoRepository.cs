@@ -17,7 +17,7 @@ namespace MyTodo.Repositories
         public Todo Create(Todo value)
         {
             _todoConext.Todos.Add(value);
-            _todoConext.SaveChangesAsync();
+            _todoConext.SaveChanges();
             return value;
         }
 
@@ -34,6 +34,12 @@ namespace MyTodo.Repositories
         public IEnumerable<Todo> FindAll()
         {
             return _todoConext.Todos;
+        }
+
+        public async Task<IEnumerable<Todo>> FindAll(Expression<Func<Todo, bool>> pred)
+        {
+            var todos = _todoConext.Todos.Where(pred).ToList();
+            return todos;
         }
 
         public Todo Update(Todo value)
