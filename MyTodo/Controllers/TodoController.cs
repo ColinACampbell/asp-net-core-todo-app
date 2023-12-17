@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyTodo.Models;
 using MyTodo.Repositories;
@@ -17,7 +11,7 @@ namespace MyTodo.Controllers
     [ApiController]
     [Authorize]
     [Route("/api/v1/todo")]
-    public class TodoController : ControllerBase
+    public class TodoController : Controller
     {
         IBaseRepository<Todo> todoRepository;
         IUserService _userService;
@@ -34,12 +28,12 @@ namespace MyTodo.Controllers
             // TODO Use user id
             var currentUser = HttpContext.User;
             var user = await _userService.GetUser(currentUser);
-            return await todoRepository.FindAll(t=> t.userId == user.Id);
+            return await todoRepository.FindAll(t => t.userId == user.Id);
         }
 
         [HttpPost]
-        public async Task<Todo> CreateTODO([FromBody] MyTodo.Models.Http.CreateTodo newTodo){
-            Console.WriteLine(newTodo.title);
+        public async Task<Todo> CreateTODO([FromBody] MyTodo.Models.Http.CreateTodo newTodo)
+        {
             Todo todo = new Todo();
 
             // Create special class for accepting the request
@@ -52,6 +46,16 @@ namespace MyTodo.Controllers
             todo.date = newTodo.date;
             todo.description = newTodo.description;
             return todoRepository.Create(todo);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTODO(string id)
+        {       
+            var _id = Int32.Parse(id);
+            var todo = await todoRepository.Delete(_id);
+            if (todo == null)
+                return NotFound();
+            return Ok(todo);
         }
     }
 }

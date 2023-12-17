@@ -25,7 +25,7 @@ namespace MyTodo.Repositories
             return newUser;
         }
 
-        public User Delete(User value)
+        public Task<User> Delete(int id)
         {
             throw new NotImplementedException();
         }

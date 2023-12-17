@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using MyTodo.Models;
 
 namespace MyTodo.Repositories
@@ -21,9 +22,14 @@ namespace MyTodo.Repositories
             return value;
         }
 
-        public Todo Delete(Todo value)
+        public async Task<Todo?> Delete(int id)
         {
-            throw new NotImplementedException();
+            var todo = await _todoConext.Todos.FirstOrDefaultAsync(t => t.Id == id);
+            if (todo == null)
+                return null;
+            _todoConext.Todos.Remove(todo);
+            await _todoConext.SaveChangesAsync();
+            return todo;
         }
 
         public Task<Todo?> Find(Expression<Func<Todo, bool>> pred)

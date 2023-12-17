@@ -6,7 +6,7 @@ namespace MyTodo.Repositories
 	{
 		T Create(T value);
 		T Update(T value);
-		T Delete(T value);
+		Task<T> Delete(int id);
 		IEnumerable<T> FindAll();
 		Task<T?> Find(Expression<Func<T, bool>> pred);
 		Task<IEnumerable<T>> FindAll(Expression<Func<T, bool>> pred);
